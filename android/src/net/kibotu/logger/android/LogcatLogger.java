@@ -17,7 +17,7 @@ public class LogcatLogger implements ILogger {
     }
 
     @Override
-    public void debug ( @NotNull final String tag, @NotNull final String message ) {
+    public void debug ( final String tag, final String message ) {
         Log.d( tag + DEBUG.name(), message );
     }
 
