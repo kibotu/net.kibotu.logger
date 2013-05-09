@@ -22,30 +22,30 @@ public class ConsoleLoggerTest {
     @Test
     public void testDebug () throws Exception {
         new ConsoleLogger().debug( "MyApp", "message" );
-        assertEquals( "MyApp" + Logger.Level.DEBUG.name() + ": message\n", out.getLog() );
+        assertEquals( "MyApp" + Logger.Level.DEBUG.TAG + ": message\n", out.getLog() );
     }
 
     @Test
     public void testVerbose () throws Exception {
         new ConsoleLogger().verbose( "MyApp", "message" );
-        assertEquals( "MyApp" + Logger.Level.VERBOSE.name() + ": message\n", out.getLog() );
+        assertEquals( "MyApp" + Logger.Level.VERBOSE.TAG + ": message\n", out.getLog() );
     }
 
     @Test
     public void testInformation () throws Exception {
         new ConsoleLogger().information( "MyApp", "message" );
-        assertEquals( "MyApp" + Logger.Level.INFO.name() + ": message\n", out.getLog() );
+        assertEquals( "MyApp" + Logger.Level.INFO.TAG + ": message\n", out.getLog() );
     }
 
     @Test
     public void testWarning () throws Exception {
         new ConsoleLogger().warning( "MyApp", "message" );
-        assertEquals( "MyApp" + Logger.Level.WARNING.name() + ": message\n", out.getLog() );
+        assertEquals( "MyApp" + Logger.Level.WARNING.TAG + ": message\n", out.getLog() );
     }
 
     @Test
     public void testError () throws Exception {
         new ConsoleLogger().error( "MyApp", "message" );
-        assertEquals( "MyApp" + Logger.Level.ERROR.name() + ": message\n", err.getLog() );
+        assertEquals( "MyApp" + Logger.Level.ERROR.TAG + ": message\n", err.getLog() );
     }
 }

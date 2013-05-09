@@ -2,7 +2,6 @@ package net.kibotu.logger.android;
 
 import android.util.Log;
 import net.kibotu.logger.ILogger;
-import org.jetbrains.annotations.NotNull;
 
 import static net.kibotu.logger.Logger.Level.*;
 
@@ -18,26 +17,26 @@ public class LogcatLogger implements ILogger {
 
     @Override
     public void debug ( final String tag, final String message ) {
-        Log.d( tag + DEBUG.name(), message );
+        Log.d( tag + DEBUG.TAG, message );
     }
 
     @Override
     public void verbose ( final String tag, final String message ) {
-        Log.d( tag + VERBOSE.name(), message );
+        Log.d( tag + VERBOSE.TAG, message );
     }
 
     @Override
     public void information ( final String tag, final String message ) {
-        Log.d( tag + INFO.name(), message );
+        Log.d( tag + INFO.TAG, message );
     }
 
     @Override
     public void warning ( final String tag, final String message ) {
-        Log.d( tag + WARNING.name(), message );
+        Log.d( tag + WARNING.TAG, message );
     }
 
     @Override
     public void error ( final String tag, final String message ) {
-        Log.d( tag + ERROR.name(), message );
+        Log.d( tag + ERROR.TAG, message );
     }
 }

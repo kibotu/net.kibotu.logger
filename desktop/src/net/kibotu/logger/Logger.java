@@ -15,6 +15,10 @@ import org.jetbrains.annotations.NotNull;
 final public class Logger {
 
     /**
+     * Separator between tags.
+     */
+    public static final String SEPARATOR = ".";
+    /**
      * Singleton.
      */
     private static Logger INSTANCE;
@@ -41,7 +45,7 @@ final public class Logger {
      */
     private Logger ( @NotNull final ILogger logger, @NotNull final String tag, @NotNull Level level ) {
         Logger.logger = logger;
-        Logger.tag = tag;
+        Logger.tag = tag + SEPARATOR;
         Logger.logLevel = level;
     }
 
@@ -51,7 +55,7 @@ final public class Logger {
      * @param logger - Concrete logger.
      */
     synchronized public static void init ( @NotNull final ILogger logger ) {
-        if ( INSTANCE == null ) INSTANCE = new Logger( logger, "Log.", Level.DEBUG );
+        if ( INSTANCE == null ) INSTANCE = new Logger( logger, "Log", Level.DEBUG );
     }
 
     /**
@@ -92,8 +96,8 @@ final public class Logger {
      *
      * @param message - Actual logging message.
      */
-    public static void d ( @NotNull final String message ) {
-        if ( allowLogging( Level.DEBUG ) ) logger.debug( tag, message );
+    public static void d ( @NotNull final String loggingTag, @NotNull final String message ) {
+        if ( allowLogging( Level.DEBUG ) ) logger.debug( tag + loggingTag + SEPARATOR, message );
     }
 
     /**
@@ -101,8 +105,8 @@ final public class Logger {
      *
      * @param message - Actual logging message.
      */
-    public static void e ( @NotNull final String message ) {
-        if ( allowLogging( Level.ERROR ) ) logger.error( tag, message );
+    public static void e ( @NotNull final String loggingTag, @NotNull final String message ) {
+        if ( allowLogging( Level.ERROR ) ) logger.error( tag + loggingTag + SEPARATOR, message );
     }
 
     /**
@@ -129,8 +133,8 @@ final public class Logger {
      *
      * @param message - Actual logging message.
      */
-    public static void i ( @NotNull final String message ) {
-        if ( allowLogging( Level.INFO ) ) logger.information( tag, message );
+    public static void i ( @NotNull final String loggingTag, @NotNull final String message ) {
+        if ( allowLogging( Level.INFO ) ) logger.information( tag + loggingTag + SEPARATOR, message );
     }
 
     /**
@@ -138,8 +142,8 @@ final public class Logger {
      *
      * @param message - Actual logging message.
      */
-    public static void v ( @NotNull final String message ) {
-        if ( allowLogging( Level.VERBOSE ) ) logger.verbose( tag, message );
+    public static void v ( @NotNull final String loggingTag, @NotNull final String message ) {
+        if ( allowLogging( Level.VERBOSE ) ) logger.verbose( tag + loggingTag + SEPARATOR, message );
     }
 
     /**
@@ -147,8 +151,8 @@ final public class Logger {
      *
      * @param message - Actual logging message.
      */
-    public static void w ( @NotNull final String message ) {
-        if ( allowLogging( Level.WARNING ) ) logger.warning( tag, message );
+    public static void w ( @NotNull final String loggingTag, @NotNull final String message ) {
+        if ( allowLogging( Level.WARNING ) ) logger.warning( tag + loggingTag + SEPARATOR, message );
     }
 
     /**
@@ -158,7 +162,7 @@ final public class Logger {
      */
     @NotNull
     public static String getTag () {
-        return tag;
+        return tag.substring( 0, tag.length() - 1 );
     }
 
     /**
@@ -167,13 +171,18 @@ final public class Logger {
      * @param tag - Added to the beginning of all logs.
      */
     public static void setTag ( @NotNull final String tag ) {
-        Logger.tag = tag;
+        Logger.tag = tag + SEPARATOR;
     }
 
     /**
      * Represents the logging levels.
      */
     public static enum Level {
-        DEBUG, VERBOSE, INFO, WARNING, ERROR, NO_LOGGING,
+        DEBUG( "D" ), VERBOSE( "V" ), INFO( "I" ), WARNING( "W" ), ERROR( "E" ), NO_LOGGING( "" );
+        public final String TAG;
+
+        private Level ( @NotNull final String tag ) {
+            TAG = tag;
+        }
     }
 }

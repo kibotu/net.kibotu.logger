@@ -17,26 +17,26 @@ public class ConsoleLogger implements ILogger {
 
     @Override
     public void debug ( @NotNull final String tag, @NotNull final String message ) {
-        System.out.printf( FORMATTER, tag, Logger.Level.DEBUG.name(), message );
+        System.out.printf( FORMATTER, tag, Logger.Level.DEBUG.TAG, message );
     }
 
     @Override
     public void verbose ( final String tag, final String message ) {
-        System.out.printf( FORMATTER, tag, Logger.Level.VERBOSE.name(), message );
+        System.out.printf( FORMATTER, tag, Logger.Level.VERBOSE.TAG, message );
     }
 
     @Override
     public void information ( final String tag, final String message ) {
-        System.out.printf( FORMATTER, tag, Logger.Level.INFO.name(), message );
+        System.out.printf( FORMATTER, tag, Logger.Level.INFO.TAG, message );
     }
 
     @Override
     public void warning ( final String tag, final String message ) {
-        System.out.printf( FORMATTER, tag, Logger.Level.WARNING.name(), message );
+        System.out.printf( FORMATTER, tag, Logger.Level.WARNING.TAG, message );
     }
 
     @Override
     public void error ( final String tag, final String message ) {
-        System.err.printf( FORMATTER, tag, Logger.Level.ERROR.name(), message );
+        System.err.printf( FORMATTER, tag, Logger.Level.ERROR.TAG, message );
     }
 }
