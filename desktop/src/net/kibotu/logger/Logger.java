@@ -43,7 +43,7 @@ final public class Logger {
      * @param tag    - Application tag, gets added to the beginning.
      * @param level  - Logging level.
      */
-    private Logger ( @NotNull final ILogger logger, @NotNull final String tag, @NotNull Level level ) {
+    private Logger(@NotNull final ILogger logger, @NotNull final String tag, @NotNull Level level) {
         Logger.logger = logger;
         Logger.tag = tag + SEPARATOR;
         Logger.logLevel = level;
@@ -54,8 +54,8 @@ final public class Logger {
      *
      * @param logger - Concrete logger.
      */
-    synchronized public static void init ( @NotNull final ILogger logger ) {
-        if ( INSTANCE == null ) INSTANCE = new Logger( logger, "Log", Level.DEBUG );
+    synchronized public static void init(@NotNull final ILogger logger) {
+        if (INSTANCE == null) INSTANCE = new Logger(logger, "Log", Level.DEBUG);
     }
 
     /**
@@ -65,14 +65,14 @@ final public class Logger {
      * @param tag    - Application tag, gets added to the beginning.
      * @param level  - Logging level.
      */
-    synchronized public static void init ( @NotNull final ILogger logger, @NotNull final String tag, @NotNull Level level ) {
-        if ( INSTANCE == null ) INSTANCE = new Logger( logger, tag, level );
+    synchronized public static void init(@NotNull final ILogger logger, @NotNull final String tag, @NotNull Level level) {
+        if (INSTANCE == null) INSTANCE = new Logger(logger, tag, level);
     }
 
     /**
      * Nullifies the logger instance.
      */
-    synchronized public static void release () {
+    synchronized public static void release() {
         INSTANCE = null;
         Logger.logger = null;
         Logger.tag = null;
@@ -83,12 +83,11 @@ final public class Logger {
      * Checks against logging level.
      *
      * @param level - Defined logging level.
-     *
      * @return true if logging is allowed.
      */
-    private static boolean allowLogging ( @NotNull final Level level ) {
-        if ( logger == null ) throw new IllegalStateException( "'logger' must not be null. (Not initiated?)" );
-        return logLevel.compareTo( level ) <= 0;
+    private static boolean allowLogging(@NotNull final Level level) {
+        if (logger == null) throw new IllegalStateException("'logger' must not be null. (Not initiated?)");
+        return logLevel.compareTo(level) <= 0;
     }
 
     /**
@@ -96,8 +95,8 @@ final public class Logger {
      *
      * @param message - Actual logging message.
      */
-    public static void d ( @NotNull final String loggingTag, @NotNull final String message ) {
-        if ( allowLogging( Level.DEBUG ) ) logger.debug( tag + loggingTag + SEPARATOR, message );
+    public static void d(@NotNull final String loggingTag, @NotNull final String message) {
+        if (allowLogging(Level.DEBUG)) logger.debug(tag + loggingTag + SEPARATOR, message);
     }
 
     /**
@@ -105,8 +104,8 @@ final public class Logger {
      *
      * @param message - Actual logging message.
      */
-    public static void e ( @NotNull final String loggingTag, @NotNull final String message ) {
-        if ( allowLogging( Level.ERROR ) ) logger.error( tag + loggingTag + SEPARATOR, message );
+    public static void e(@NotNull final String loggingTag, @NotNull final String message) {
+        if (allowLogging(Level.ERROR)) logger.error(tag + loggingTag + SEPARATOR, message);
     }
 
     /**
@@ -115,7 +114,7 @@ final public class Logger {
      * @return Currently set logging level.
      */
     @NotNull
-    public static Level getLogLevel () {
+    public static Level getLogLevel() {
         return logLevel;
     }
 
@@ -124,7 +123,7 @@ final public class Logger {
      *
      * @param logLevel new logging level.
      */
-    public static void setLogLevel ( @NotNull final Level logLevel ) {
+    public static void setLogLevel(@NotNull final Level logLevel) {
         Logger.logLevel = logLevel;
     }
 
@@ -133,8 +132,8 @@ final public class Logger {
      *
      * @param message - Actual logging message.
      */
-    public static void i ( @NotNull final String loggingTag, @NotNull final String message ) {
-        if ( allowLogging( Level.INFO ) ) logger.information( tag + loggingTag + SEPARATOR, message );
+    public static void i(@NotNull final String loggingTag, @NotNull final String message) {
+        if (allowLogging(Level.INFO)) logger.information(tag + loggingTag + SEPARATOR, message);
     }
 
     /**
@@ -142,8 +141,8 @@ final public class Logger {
      *
      * @param message - Actual logging message.
      */
-    public static void v ( @NotNull final String loggingTag, @NotNull final String message ) {
-        if ( allowLogging( Level.VERBOSE ) ) logger.verbose( tag + loggingTag + SEPARATOR, message );
+    public static void v(@NotNull final String loggingTag, @NotNull final String message) {
+        if (allowLogging(Level.VERBOSE)) logger.verbose(tag + loggingTag + SEPARATOR, message);
     }
 
     /**
@@ -151,8 +150,8 @@ final public class Logger {
      *
      * @param message - Actual logging message.
      */
-    public static void w ( @NotNull final String loggingTag, @NotNull final String message ) {
-        if ( allowLogging( Level.WARNING ) ) logger.warning( tag + loggingTag + SEPARATOR, message );
+    public static void w(@NotNull final String loggingTag, @NotNull final String message) {
+        if (allowLogging(Level.WARNING)) logger.warning(tag + loggingTag + SEPARATOR, message);
     }
 
     /**
@@ -161,8 +160,8 @@ final public class Logger {
      * @return current set prefix tag.
      */
     @NotNull
-    public static String getTag () {
-        return tag.substring( 0, tag.length() - 1 );
+    public static String getTag() {
+        return tag.substring(0, tag.length() - 1);
     }
 
     /**
@@ -170,18 +169,22 @@ final public class Logger {
      *
      * @param tag - Added to the beginning of all logs.
      */
-    public static void setTag ( @NotNull final String tag ) {
+    public static void setTag(@NotNull final String tag) {
         Logger.tag = tag + SEPARATOR;
+    }
+
+    public static void toast(@NotNull String message) {
+        logger.toast(message);
     }
 
     /**
      * Represents the logging levels.
      */
     public static enum Level {
-        DEBUG( "D" ), VERBOSE( "V" ), INFO( "I" ), WARNING( "W" ), ERROR( "E" ), NO_LOGGING( "" );
+        DEBUG("D"), VERBOSE("V"), INFO("I"), WARNING("W"), ERROR("E"), NO_LOGGING("");
         public final String TAG;
 
-        private Level ( @NotNull final String tag ) {
+        private Level(@NotNull final String tag) {
             TAG = tag;
         }
     }

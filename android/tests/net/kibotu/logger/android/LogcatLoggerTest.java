@@ -15,7 +15,7 @@ import static junit.framework.Assert.assertEquals;
  */
 public class LogcatLoggerTest {
 
-    private static final LogcatLogger logger = new LogcatLogger();
+    private static final LogcatLogger logger = new LogcatLogger(null);
     @Rule
     public final StandardOutputStreamLog out = new StandardOutputStreamLog();
     @Rule

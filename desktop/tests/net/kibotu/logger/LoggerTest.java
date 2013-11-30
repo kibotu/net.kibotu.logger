@@ -28,159 +28,159 @@ public class LoggerTest {
     public final StandardErrorStreamLog err = new StandardErrorStreamLog();
 
     @Before
-    public void testInit () throws Exception {
+    public void testInit() throws Exception {
         release();
-        init( cLogger, APP_NAME, DEBUG );
-        assertTrue( getTag().equals( APP_NAME ) );
-        assertTrue( getLogLevel().equals( DEBUG ) );
+        init(cLogger, APP_NAME, DEBUG);
+        assertTrue(getTag().equals(APP_NAME));
+        assertTrue(getLogLevel().equals(DEBUG));
     }
 
     @Test
-    public void testD () throws Exception {
-        setLogLevel( DEBUG );
-        d( LOGGING_TAG, MESSAGE );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + DEBUG.TAG + ": " + MESSAGE + "\n", out.getLog() );
-    }
-
-    @Test
-
-    public void testE () throws Exception {
-        setLogLevel( ERROR );
-        e( LOGGING_TAG, MESSAGE );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + ERROR.TAG + ": " + MESSAGE + "\n", err.getLog() );
-    }
-
-    @Test
-    public void testGetLogLevel () throws Exception {
-        assertTrue( DEBUG.equals( getLogLevel() ) );
-    }
-
-    @Test
-    public void testSetLogLevel () throws Exception {
-        setLogLevel( NO_LOGGING );
-        assertEquals( NO_LOGGING, getLogLevel() );
-        setLogLevel( DEBUG );
-        assertEquals( DEBUG, getLogLevel() );
+    public void testD() throws Exception {
+        setLogLevel(DEBUG);
+        d(LOGGING_TAG, MESSAGE);
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + DEBUG.TAG + ": " + MESSAGE + "\n", out.getLog());
     }
 
     @Test
 
-    public void testI () throws Exception {
-        setLogLevel( INFO );
-        i( LOGGING_TAG, MESSAGE );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + INFO.TAG + ": " + MESSAGE + "\n", out.getLog() );
+    public void testE() throws Exception {
+        setLogLevel(ERROR);
+        e(LOGGING_TAG, MESSAGE);
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + ERROR.TAG + ": " + MESSAGE + "\n", err.getLog());
     }
 
     @Test
-    public void testV () throws Exception {
-        setLogLevel( VERBOSE );
-        v( LOGGING_TAG, MESSAGE );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + VERBOSE.TAG + ": " + MESSAGE + "\n", out.getLog() );
+    public void testGetLogLevel() throws Exception {
+        assertTrue(DEBUG.equals(getLogLevel()));
     }
 
     @Test
-    public void testW () throws Exception {
-        setLogLevel( WARNING );
-        w( LOGGING_TAG, MESSAGE );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + WARNING.TAG + ": " + MESSAGE + "\n", out.getLog() );
+    public void testSetLogLevel() throws Exception {
+        setLogLevel(NO_LOGGING);
+        assertEquals(NO_LOGGING, getLogLevel());
+        setLogLevel(DEBUG);
+        assertEquals(DEBUG, getLogLevel());
     }
 
     @Test
-    public void testGetTag () throws Exception {
-        assertEquals( getTag(), APP_NAME );
+
+    public void testI() throws Exception {
+        setLogLevel(INFO);
+        i(LOGGING_TAG, MESSAGE);
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + INFO.TAG + ": " + MESSAGE + "\n", out.getLog());
     }
 
     @Test
-    public void testSetTag () throws Exception {
-        setTag( "YourApp" );
-        assertEquals( getTag(), "YourApp" );
-        setTag( APP_NAME );
-        assertEquals( getTag(), APP_NAME );
+    public void testV() throws Exception {
+        setLogLevel(VERBOSE);
+        v(LOGGING_TAG, MESSAGE);
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + VERBOSE.TAG + ": " + MESSAGE + "\n", out.getLog());
     }
 
     @Test
-    public void testDebugOrder () throws Exception {
-        setLogLevel( DEBUG );
-        d( LOGGING_TAG, MESSAGE );
-        v( LOGGING_TAG, MESSAGE );
-        i( LOGGING_TAG, MESSAGE );
-        w( LOGGING_TAG, MESSAGE );
-        e( LOGGING_TAG, MESSAGE );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + DEBUG.TAG + ": " + MESSAGE + "\n" +
+    public void testW() throws Exception {
+        setLogLevel(WARNING);
+        w(LOGGING_TAG, MESSAGE);
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + WARNING.TAG + ": " + MESSAGE + "\n", out.getLog());
+    }
+
+    @Test
+    public void testGetTag() throws Exception {
+        assertEquals(getTag(), APP_NAME);
+    }
+
+    @Test
+    public void testSetTag() throws Exception {
+        setTag("YourApp");
+        assertEquals(getTag(), "YourApp");
+        setTag(APP_NAME);
+        assertEquals(getTag(), APP_NAME);
+    }
+
+    @Test
+    public void testDebugOrder() throws Exception {
+        setLogLevel(DEBUG);
+        d(LOGGING_TAG, MESSAGE);
+        v(LOGGING_TAG, MESSAGE);
+        i(LOGGING_TAG, MESSAGE);
+        w(LOGGING_TAG, MESSAGE);
+        e(LOGGING_TAG, MESSAGE);
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + DEBUG.TAG + ": " + MESSAGE + "\n" +
                 APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + VERBOSE.TAG + ": " + MESSAGE + "\n" +
                 APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + INFO.TAG + ": " + MESSAGE + "\n" +
                 APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + WARNING.TAG + ": " + MESSAGE + "\n"
-                , out.getLog() );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + ERROR.TAG + ": " + MESSAGE + "\n"
-                , err.getLog() );
+                , out.getLog());
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + ERROR.TAG + ": " + MESSAGE + "\n"
+                , err.getLog());
     }
 
     @Test
-    public void testVerboseOrder () throws Exception {
-        setLogLevel( VERBOSE );
-        d( LOGGING_TAG, MESSAGE );
-        v( LOGGING_TAG, MESSAGE );
-        i( LOGGING_TAG, MESSAGE );
-        w( LOGGING_TAG, MESSAGE );
-        e( LOGGING_TAG, MESSAGE );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + VERBOSE.TAG + ": " + MESSAGE + "\n" +
+    public void testVerboseOrder() throws Exception {
+        setLogLevel(VERBOSE);
+        d(LOGGING_TAG, MESSAGE);
+        v(LOGGING_TAG, MESSAGE);
+        i(LOGGING_TAG, MESSAGE);
+        w(LOGGING_TAG, MESSAGE);
+        e(LOGGING_TAG, MESSAGE);
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + VERBOSE.TAG + ": " + MESSAGE + "\n" +
                 APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + INFO.TAG + ": " + MESSAGE + "\n" +
                 APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + WARNING.TAG + ": " + MESSAGE + "\n"
-                , out.getLog() );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + ERROR.TAG + ": " + MESSAGE + "\n"
-                , err.getLog() );
+                , out.getLog());
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + ERROR.TAG + ": " + MESSAGE + "\n"
+                , err.getLog());
     }
 
     @Test
-    public void testInfoOrder () throws Exception {
-        setLogLevel( INFO );
-        d( LOGGING_TAG, MESSAGE );
-        v( LOGGING_TAG, MESSAGE );
-        i( LOGGING_TAG, MESSAGE );
-        w( LOGGING_TAG, MESSAGE );
-        e( LOGGING_TAG, MESSAGE );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + INFO.TAG + ": " + MESSAGE + "\n" +
+    public void testInfoOrder() throws Exception {
+        setLogLevel(INFO);
+        d(LOGGING_TAG, MESSAGE);
+        v(LOGGING_TAG, MESSAGE);
+        i(LOGGING_TAG, MESSAGE);
+        w(LOGGING_TAG, MESSAGE);
+        e(LOGGING_TAG, MESSAGE);
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + INFO.TAG + ": " + MESSAGE + "\n" +
                 APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + WARNING.TAG + ": " + MESSAGE + "\n"
-                , out.getLog() );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + ERROR.TAG + ": " + MESSAGE + "\n"
-                , err.getLog() );
+                , out.getLog());
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + ERROR.TAG + ": " + MESSAGE + "\n"
+                , err.getLog());
     }
 
     @Test
-    public void testWarningOrder () throws Exception {
-        setLogLevel( WARNING );
-        d( LOGGING_TAG, MESSAGE );
-        v( LOGGING_TAG, MESSAGE );
-        i( LOGGING_TAG, MESSAGE );
-        w( LOGGING_TAG, MESSAGE );
-        e( LOGGING_TAG, MESSAGE );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + WARNING.TAG + ": " + MESSAGE + "\n"
-                , out.getLog() );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + ERROR.TAG + ": " + MESSAGE + "\n"
-                , err.getLog() );
+    public void testWarningOrder() throws Exception {
+        setLogLevel(WARNING);
+        d(LOGGING_TAG, MESSAGE);
+        v(LOGGING_TAG, MESSAGE);
+        i(LOGGING_TAG, MESSAGE);
+        w(LOGGING_TAG, MESSAGE);
+        e(LOGGING_TAG, MESSAGE);
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + WARNING.TAG + ": " + MESSAGE + "\n"
+                , out.getLog());
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + ERROR.TAG + ": " + MESSAGE + "\n"
+                , err.getLog());
     }
 
     @Test
-    public void testErrorOrder () throws Exception {
-        setLogLevel( ERROR );
-        d( LOGGING_TAG, MESSAGE );
-        v( LOGGING_TAG, MESSAGE );
-        i( LOGGING_TAG, MESSAGE );
-        w( LOGGING_TAG, MESSAGE );
-        e( LOGGING_TAG, MESSAGE );
-        assertEquals( APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + ERROR.TAG + ": " + MESSAGE + "\n"
-                , err.getLog() );
+    public void testErrorOrder() throws Exception {
+        setLogLevel(ERROR);
+        d(LOGGING_TAG, MESSAGE);
+        v(LOGGING_TAG, MESSAGE);
+        i(LOGGING_TAG, MESSAGE);
+        w(LOGGING_TAG, MESSAGE);
+        e(LOGGING_TAG, MESSAGE);
+        assertEquals(APP_NAME + SEPARATOR + LOGGING_TAG + SEPARATOR + ERROR.TAG + ": " + MESSAGE + "\n"
+                , err.getLog());
     }
 
     @Test
-    public void testNoLogginOrder () throws Exception {
-        setLogLevel( NO_LOGGING );
-        d( LOGGING_TAG, MESSAGE );
-        v( LOGGING_TAG, MESSAGE );
-        i( LOGGING_TAG, MESSAGE );
-        w( LOGGING_TAG, MESSAGE );
-        e( LOGGING_TAG, MESSAGE );
-        assertEquals( "", out.getLog() );
-        assertEquals( "", err.getLog() );
+    public void testNoLogginOrder() throws Exception {
+        setLogLevel(NO_LOGGING);
+        d(LOGGING_TAG, MESSAGE);
+        v(LOGGING_TAG, MESSAGE);
+        i(LOGGING_TAG, MESSAGE);
+        w(LOGGING_TAG, MESSAGE);
+        e(LOGGING_TAG, MESSAGE);
+        assertEquals("", out.getLog());
+        assertEquals("", err.getLog());
     }
 }
