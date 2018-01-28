@@ -1,3 +1,6 @@
+# DEPRECATED use https://github.com/kibotu/StreamingAndroidLogger
+
+
 net.kibotu.logger
 =================
 
